@@ -88,7 +88,7 @@ def lottery():
 
 # 🔹 ฟังก์ชันสร้างรูปภาพ (เหมือนเดิม)
 def create_image(lottery_type):
-    bg_path = os.path.join("static", "Baan2.jpg")
+    bg_path = os.path.join("static", "Baan3.jpg")
     font_path = os.path.join("static", "Mali-Bold.ttf")
 
     image = Image.open(bg_path)
