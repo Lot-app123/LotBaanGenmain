@@ -88,7 +88,7 @@ def lottery():
 
 # 🔹 ฟังก์ชันสร้างรูปภาพ (เหมือนเดิม)
 def create_image(lottery_type):
-    bg_path = os.path.join("static", "Baan1.jpg")
+    bg_path = os.path.join("static", "Baan2.jpg")
     font_path = os.path.join("static", "Mali-Bold.ttf")
 
     image = Image.open(bg_path)
@@ -106,8 +106,8 @@ def create_image(lottery_type):
 
     # คำนวณตำแหน่งให้อยู่ตรงกลาง
     image_width = image.width
-    x_position = (image_width - text_width) // 2  # ตำแหน่ง X ให้อยู่ตรงกลาง
-    y_position = 50  # ให้ข้อความอยู่ด้านบน
+    x_position = ((image_width - text_width) // 2) + 20  # ตำแหน่ง X ให้อยู่ตรงกลาง
+    y_position = 160  # ให้ข้อความอยู่ด้านบน
 
     # วาดข้อความที่คำนวณแล้ว
     draw.text((x_position, y_position), lottery_type, font=font_medium, fill="white")
@@ -130,13 +130,13 @@ def create_image(lottery_type):
     units3 = random.sample([x for x in all_units if x not in units + units2], 1)
     random_6_digits = "".join(random.choices(f"{num1}{num2}" + "0123456789", k=6))
 
-    draw.text((595, 245), f"{num1} - {num2}", font=font_large, fill="white")
-    draw.text((520, 450), " ".join(tens[:1]), font=font_large, fill="white")
-    draw.text((520, 600), " ".join(tens2[:1]), font=font_large, fill="white")
-    draw.text((520, 750), " ".join(tens3[:1]), font=font_large, fill="white")
-    draw.text((770, 450), " ".join(units[:1]), font=font_large, fill="white")
-    draw.text((770, 600), " ".join(units2[:1]), font=font_large, fill="white")
-    draw.text((770, 750), " ".join(units3[:1]), font=font_large, fill="white")
+    draw.text((170, 500), f"{num1} - {num2}", font=font_large, fill="white")
+    draw.text((560, 400), " ".join(tens[:1]), font=font_large, fill="white")
+    draw.text((560, 525), " ".join(tens2[:1]), font=font_large, fill="white")
+    draw.text((560, 650), " ".join(tens3[:1]), font=font_large, fill="white")
+    draw.text((770, 400), " ".join(units[:1]), font=font_large, fill="white")
+    draw.text((770, 525), " ".join(units2[:1]), font=font_large, fill="white")
+    draw.text((770, 650), " ".join(units3[:1]), font=font_large, fill="white")
     #draw.text((250, 520), f"วิน.{random_6_digits}", font=font_medium, fill="yellow")
 
     output_filename = f"output_{lottery_type}.png"
@@ -150,5 +150,5 @@ def create_image(lottery_type):
  #   app.run(debug=True)
 if __name__ == "__main__":
     import os
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5001))
     app.run(host="0.0.0.0", port=port)
