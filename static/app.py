@@ -88,7 +88,7 @@ def lottery():
 
 # 🔹 ฟังก์ชันสร้างรูปภาพ (เหมือนเดิม)
 def create_image(lottery_type):
-    bg_path = os.path.join("static", "Baan1.jpg")
+    bg_path = os.path.join("static", "Baan3.jpg")
     font_path = os.path.join("static", "Mali-Bold.ttf")
 
     image = Image.open(bg_path)
@@ -96,7 +96,7 @@ def create_image(lottery_type):
 
     font_large = ImageFont.truetype(font_path, 100)
     font_medium = ImageFont.truetype(font_path, 70)
-    font_small = ImageFont.truetype(font_path, 40)
+    font_small = ImageFont.truetype(font_path, 53)
 
     #date_text = datetime.now().strftime("%d.%m.%y")
     #draw.text((250, 50), date_text, font=font_medium, fill="yellow")
@@ -106,21 +106,25 @@ def create_image(lottery_type):
 
     # คำนวณตำแหน่งให้อยู่ตรงกลาง
     image_width = image.width
-    x_position = (image_width - text_width) // 2  # ตำแหน่ง X ให้อยู่ตรงกลาง
-    y_position = 50  # ให้ข้อความอยู่ด้านบน
+    x_position = ((image_width - text_width) // 2 )# ตำแหน่ง X ให้อยู่ตรงกลาง
+    #x_position = 400
+    y_position = 160  # ให้ข้อความอยู่ด้านบน
 
     # วาดข้อความที่คำนวณแล้ว
-    draw.text((x_position, y_position), lottery_type, font=font_medium, fill="white")
+    draw.text((x_position, y_position), lottery_type, font=font_small, fill="white")
 
     #draw.text((250,50), lottery_type, font=font_medium, fill="white")
 
     num1, num2 = random.sample(range(0, 10), 2)
 
-    # สร้างรายการเลขสองหลักที่ขึ้นต้นด้วย num1 และ num2
-    all_tens = [f"{num1}{i}" for i in range(10)]
-    all_units = [f"{num2}{i}" for i in range(10)]
+    # 🔥 ห้ามให้มี 23 หรือ 32 (ตามตัวอย่าง)
+    disallowed = {f"{num1}{num2}", f"{num2}{num1}"}
 
-    # สุ่มไม่ให้ซ้ำกัน
+    # 🔹 สร้างรายการเลขสองหลักที่ขึ้นต้นด้วย num1 และไม่ใช่ disallowed
+    all_tens = [f"{num1}{i}" for i in range(10) if f"{num1}{i}" not in disallowed]
+    all_units = [f"{num2}{i}" for i in range(10) if f"{num2}{i}" not in disallowed]
+
+    # 🔹 สุ่มไม่ซ้ำกัน
     tens = random.sample(all_tens, 1)
     tens2 = random.sample([x for x in all_tens if x not in tens], 1)
     tens3 = random.sample([x for x in all_tens if x not in tens + tens2], 1)
@@ -128,27 +132,27 @@ def create_image(lottery_type):
     units = random.sample(all_units, 1)
     units2 = random.sample([x for x in all_units if x not in units], 1)
     units3 = random.sample([x for x in all_units if x not in units + units2], 1)
+
     random_6_digits = "".join(random.choices(f"{num1}{num2}" + "0123456789", k=6))
 
-    draw.text((595, 245), f"{num1} - {num2}", font=font_large, fill="white")
-    draw.text((520, 450), " ".join(tens[:1]), font=font_large, fill="white")
-    draw.text((520, 600), " ".join(tens2[:1]), font=font_large, fill="white")
-    draw.text((520, 750), " ".join(tens3[:1]), font=font_large, fill="white")
-    draw.text((770, 450), " ".join(units[:1]), font=font_large, fill="white")
-    draw.text((770, 600), " ".join(units2[:1]), font=font_large, fill="white")
-    draw.text((770, 750), " ".join(units3[:1]), font=font_large, fill="white")
+    draw.text((170, 500), f"{num1} - {num2}", font=font_large, fill="white")
+    draw.text((560, 400), " ".join(tens[:1]), font=font_large, fill="white")
+    draw.text((560, 525), " ".join(tens2[:1]), font=font_large, fill="white")
+    draw.text((560, 650), " ".join(tens3[:1]), font=font_large, fill="white")
+    draw.text((770, 400), " ".join(units[:1]), font=font_large, fill="white")
+    draw.text((770, 525), " ".join(units2[:1]), font=font_large, fill="white")
+    draw.text((770, 650), " ".join(units3[:1]), font=font_large, fill="white")
     #draw.text((250, 520), f"วิน.{random_6_digits}", font=font_medium, fill="yellow")
 
-    output_filename = f"output_{lottery_type}.png"
+    output_filename = f"output_{lottery_type}.jpg"
     output_path = os.path.join("static", output_filename)
 
     image.save(output_path)
     return output_path
 
-
 #if __name__ == "__main__":Edit By Frank 
  #   app.run(debug=True)
 if __name__ == "__main__":
     import os
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5001))
     app.run(host="0.0.0.0", port=port)
