@@ -144,7 +144,7 @@ def create_image(lottery_type):
     draw.text((770, 650), " ".join(units3[:1]), font=font_large, fill="white")
     #draw.text((250, 520), f"วิน.{random_6_digits}", font=font_medium, fill="yellow")
 
-    output_filename = f"output_{lottery_type}.jpg"
+    output_filename = f"output_{lottery_type}.png"
     output_path = os.path.join("static", output_filename)
 
     image.save(output_path)
