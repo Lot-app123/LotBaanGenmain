@@ -88,30 +88,30 @@ def lottery():
 
 # 🔹 ฟังก์ชันสร้างรูปภาพ (เหมือนเดิม)
 def create_image(lottery_type):
-    bg_path = os.path.join("static", "Baanchocdee.jpg")
+    bg_path = os.path.join("static", "Baan3.jpg")
     font_path = os.path.join("static", "Mali-Bold.ttf")
 
     image = Image.open(bg_path)
     draw = ImageDraw.Draw(image)
 
-    font_large = ImageFont.truetype(font_path, 100)
+    font_large = ImageFont.truetype(font_path, 80)
     font_medium = ImageFont.truetype(font_path, 70)
     font_small = ImageFont.truetype(font_path, 53)
 
     #date_text = datetime.now().strftime("%d.%m.%y")
     #draw.text((250, 50), date_text, font=font_medium, fill="yellow")
 
-    bbox = draw.textbbox((0, 0), lottery_type, font=font_medium)
+    bbox = draw.textbbox((0, 0), lottery_type, font=font_large)
     text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
 
     # คำนวณตำแหน่งให้อยู่ตรงกลาง
-    image_width = image.width
-    x_position = ((image_width - text_width) // 2 )# ตำแหน่ง X ให้อยู่ตรงกลาง
-    #x_position = 400
+    image_width = image.width 
+    x_position = (image_width - text_width) // 2 # ตำแหน่ง X ให้อยู่ตรงกลาง
+    offset = x_position + 15
     y_position = 160  # ให้ข้อความอยู่ด้านบน
 
     # วาดข้อความที่คำนวณแล้ว
-    draw.text((x_position, y_position), lottery_type, font=font_small, fill="white")
+    draw.text((offset, y_position), lottery_type, font=font_large, fill="white")
 
     #draw.text((250,50), lottery_type, font=font_medium, fill="white")
 
