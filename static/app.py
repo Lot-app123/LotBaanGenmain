@@ -107,7 +107,7 @@ def create_image(lottery_type):
     # คำนวณตำแหน่งให้อยู่ตรงกลาง
     image_width = image.width 
     x_position = (image_width - text_width) // 2 # ตำแหน่ง X ให้อยู่ตรงกลาง
-    offset = x_position + 15
+    offset = x_position + 5
     y_position = 160  # ให้ข้อความอยู่ด้านบน
 
     # วาดข้อความที่คำนวณแล้ว
