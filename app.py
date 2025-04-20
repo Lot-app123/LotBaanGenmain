@@ -94,8 +94,8 @@ def create_image(lottery_type):
     image = Image.open(bg_path)
     draw = ImageDraw.Draw(image)
 
-    font_large = ImageFont.truetype(font_path, 80)
-    font_medium = ImageFont.truetype(font_path, 70)
+    font_large = ImageFont.truetype(font_path, 110)
+    font_medium = ImageFont.truetype(font_path, 80)
     font_small = ImageFont.truetype(font_path, 53)
 
     #date_text = datetime.now().strftime("%d.%m.%y")
@@ -111,7 +111,7 @@ def create_image(lottery_type):
     y_position = 160  # ให้ข้อความอยู่ด้านบน
 
     # วาดข้อความที่คำนวณแล้ว
-    draw.text((offset, y_position), lottery_type, font=font_large, fill="white")
+    draw.text((offset, y_position), lottery_type, font=font_medium, fill="white")
 
     #draw.text((250,50), lottery_type, font=font_medium, fill="white")
 
@@ -135,13 +135,13 @@ def create_image(lottery_type):
 
     random_6_digits = "".join(random.choices(f"{num1}{num2}" + "0123456789", k=6))
 
-    draw.text((170, 500), f"{num1} - {num2}", font=font_large, fill="white")
-    draw.text((560, 400), " ".join(tens[:1]), font=font_large, fill="white")
-    draw.text((560, 525), " ".join(tens2[:1]), font=font_large, fill="white")
-    draw.text((560, 650), " ".join(tens3[:1]), font=font_large, fill="white")
-    draw.text((770, 400), " ".join(units[:1]), font=font_large, fill="white")
-    draw.text((770, 525), " ".join(units2[:1]), font=font_large, fill="white")
-    draw.text((770, 650), " ".join(units3[:1]), font=font_large, fill="white")
+    draw.text((160, 495), f"{num1} - {num2}", font=font_large, fill="white")
+    draw.text((560, 390), " ".join(tens[:1]), font=font_large, fill="white")
+    draw.text((560, 515), " ".join(tens2[:1]), font=font_large, fill="white")
+    draw.text((560, 640), " ".join(tens3[:1]), font=font_large, fill="white")
+    draw.text((770, 390), " ".join(units[:1]), font=font_large, fill="white")
+    draw.text((770, 515), " ".join(units2[:1]), font=font_large, fill="white")
+    draw.text((770, 640), " ".join(units3[:1]), font=font_large, fill="white")
     #draw.text((250, 520), f"วิน.{random_6_digits}", font=font_medium, fill="yellow")
 
     output_filename = f"output_{lottery_type}.jpg"
