@@ -101,7 +101,7 @@ def create_image(lottery_type):
     #date_text = datetime.now().strftime("%d.%m.%y")
     #draw.text((250, 50), date_text, font=font_medium, fill="yellow")
 
-    bbox = draw.textbbox((0, 0), lottery_type, font=font_large)
+    bbox = draw.textbbox((0, 0), lottery_type, font=font_medium)
     text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
 
     # คำนวณตำแหน่งให้อยู่ตรงกลาง
@@ -135,13 +135,13 @@ def create_image(lottery_type):
 
     random_6_digits = "".join(random.choices(f"{num1}{num2}" + "0123456789", k=6))
 
-    draw.text((160, 495), f"{num1} - {num2}", font=font_large, fill="white")
-    draw.text((560, 390), " ".join(tens[:1]), font=font_large, fill="white")
-    draw.text((560, 515), " ".join(tens2[:1]), font=font_large, fill="white")
-    draw.text((560, 640), " ".join(tens3[:1]), font=font_large, fill="white")
-    draw.text((770, 390), " ".join(units[:1]), font=font_large, fill="white")
-    draw.text((770, 515), " ".join(units2[:1]), font=font_large, fill="white")
-    draw.text((770, 640), " ".join(units3[:1]), font=font_large, fill="white")
+    draw.text((160, 490), f"{num1} - {num2}", font=font_large, fill="white")
+    draw.text((560, 385), " ".join(tens[:1]), font=font_large, fill="white")
+    draw.text((560, 510), " ".join(tens2[:1]), font=font_large, fill="white")
+    draw.text((560, 635), " ".join(tens3[:1]), font=font_large, fill="white")
+    draw.text((770, 385), " ".join(units[:1]), font=font_large, fill="white")
+    draw.text((770, 510), " ".join(units2[:1]), font=font_large, fill="white")
+    draw.text((770, 635), " ".join(units3[:1]), font=font_large, fill="white")
     #draw.text((250, 520), f"วิน.{random_6_digits}", font=font_medium, fill="yellow")
 
     output_filename = f"output_{lottery_type}.jpg"
